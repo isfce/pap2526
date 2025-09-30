@@ -5,18 +5,19 @@ def calculDecision(note : int)->str:
     '''
     assert 0<=note<=100 ;' La note doit être entre 0 et 100'
     if note < 30 : 
-        decision = 'Echec'
+        decision = 'Refus'
     elif note<50 :
         decision = 'Ajourné'
     else:
         decision = 'Réussite'
     return decision
 
-#Input
-note = int(input('Entrez une note entre 0 et 100: '))
+if __name__=='__main__':
+    #Input
+    note = int(input('Entrez une note entre 0 et 100: '))
 
-#Traitement
-decision = calculDecision(note)
+    #Traitement
+    decision = calculDecision(note)
 
-#Output
-print(f'La note de {note} a comme décision: {decision}')
+    #Output
+    print(f'La note de {note} a comme décision: {decision}')
