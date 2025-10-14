@@ -31,9 +31,10 @@ public class Evaluation {
 	public static void main(String[] args) {
 		// Création d'un scanner
 		Scanner scan = new Scanner(System.in);
+		
+		//input
 		int note = 0;
 		boolean erreur;
-
 		do {
 			try {
 				// lecture d'une note
@@ -41,17 +42,17 @@ public class Evaluation {
 				note = scan.nextInt();
 				erreur = note < 0 || note > 100;
 				if (erreur)
-					System.out.println("Entrez un nombre!");
-
+					System.out.println("Entrez un nombre entre 0 et 100!");
 			} catch (InputMismatchException e) {
 				System.err.println("ATTENTION CE N'EST PAS UN NOMBRE");
-				scan.next();
+				scan.next();//vide le scanner avec la mauvaise entrée
 				erreur = true;
 			}
 		} while (erreur);
 
 		// traitement
 		String decision = calculDecision(note);
+		
 		// affiche résultat
 		System.out.println("La décision est: " + decision);
 		scan.close();
