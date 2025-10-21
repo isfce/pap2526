@@ -15,5 +15,20 @@ public class TestMyMath {
 		assertFalse(MyMath.estPair(9));
 		assertThrows(AssertionError.class,()->MyMath.estPair(-9) );
 	}
+	
+	@Test
+	void testNbZero() {
+	  //TODO	
+	}
+	
+	@Test
+	void testNbPassages() {
+	  //TODO	
+	}
+	
+	@Test
+	void testSpeedConverter() {
+	  //TODO	
+	}
 
 }

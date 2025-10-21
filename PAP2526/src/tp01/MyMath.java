@@ -15,6 +15,32 @@ public class MyMath {
 		return (n & 1) == 0;// v4
 	}
 
+	/*--  
+	 * 
+	 * TP TOUSSAINT
+	 * 
+	 */
+
+	public static byte nbZero(int n) {
+		byte cpt = 0;
+		// TODO
+		return cpt;
+	}
+
+	public static int nbPassages(int n) {
+		int cpt = 0;
+		// TODO
+		return cpt;
+	}
+
+	// vous pouvez ajuster cette entête si vous optez pour un type énuméré à la
+	// place de char, pour préciser l'unité
+	public static double speedConverter(double v, char unitI, char unitD) {
+		double res = v;
+		// TODO
+		return res;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(estPair(4));
 		System.out.println(estPair(9));
