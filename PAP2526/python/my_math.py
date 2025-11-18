@@ -3,6 +3,30 @@ def estPair(n):
     assert n >= 0 ;"Le nombre doit être positif"
     return (n & 1) == 0
 
+def fact(n):
+    'Calcule la factorielle de n'
+    assert n>=0 ;"n doit être positif "
+    f = 1
+    for i in range(2,n+1):
+        f = f * i
+    return f
+
+def tableau(n,fct):
+    'affiche un tableau avec l''opération fct'
+    assert n<10;"n doit être <10"
+    print('    ',end='')
+    for i in range(1,n+1):
+        print(f'{i:4}',end='')
+    print()
+    for i in range(0,n+1):
+        print(f'____',end='')
+    print()
+    for a in range(1,n+1):
+        print(f'{a:3}|',end='')
+        for b in range(1,n+1):
+            print(f'{fct(a,b):4}',end='')
+        print()
+    print('----------------------------------')
 
 def nbZero(n):
     'Retourne le nombre de zéros dans n (base10)'
@@ -32,3 +56,9 @@ def nbPassages(n):
 
 def speedConverter(v, unitI, unitD):
     return 0.0
+
+if __name__=="__main__":
+    tableau(4,lambda x,y:x+y)
+    tableau(4,lambda x,y:x*y)
+    tableau(4,lambda x,y:x//y)
+    tableau(4,lambda x,y:x%y)

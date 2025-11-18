@@ -9,6 +9,12 @@ class TestMyMath(unittest.TestCase):
         self.assertFalse(my_math.estPair(9))
         self.assertRaises(AssertionError,my_math.estPair,-9)
     
+    def test_fact(self):
+        self.assertEqual(1,my_math.fact(0))
+        self.assertEqual(1,my_math.fact(1))
+        self.assertEqual(120,my_math.fact(5))
+        self.assertRaises(AssertionError,my_math.fact,-1)
+    
     def test_nbZero(self): 
         self.assertEqual(1,my_math.nbZero(0))
         self.assertEqual(0,my_math.nbZero(98))

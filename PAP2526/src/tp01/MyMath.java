@@ -1,5 +1,7 @@
 package tp01;
 
+import java.util.function.BiFunction;
+
 public class MyMath {
 	/**
 	 * Indique si un nombre est pair
@@ -13,6 +15,56 @@ public class MyMath {
 		// return n / 2 * 2 == n;// v2
 		// return ((n>>1)<<1) == n;//v3
 		return (n & 1) == 0;// v4
+	}
+
+	/**
+	 * Calcule la factorielle de n
+	 * 
+	 * @param n 0<=n<=20
+	 * @return
+	 */
+	public static long fact2(int n) {
+		assert n >= 0 && n < 21 : "n doit être positif et <21";
+		long f = 1;
+		for (int i = 2; i <= n; i++)
+			f = f * i;
+		return f;
+	}
+
+	public static long fact(int n) {
+		assert n >= 0 && n < 21 : "n doit être positif et <21";
+		long f = 1;
+		for (; n >= 2; n--)
+			f = f * n;
+		return f;
+	}
+
+	/**
+	 * Affiche tableau avec l'opération fct
+	 * 
+	 * @param n
+	 * @param fct (a,b)->a op b
+	 */
+	public static void tableau(int n, BiFunction<Integer, Integer, Integer> fct) {
+		assert n < 10 & n > 0 : "n entre 1 et 9";
+		// affiche entête de colonne
+		System.out.print("    ");
+		for (int i = 1; i <= n; i++)
+			System.out.printf("%4d", i);
+		System.out.println();
+		// ligne en dessous des entêtes de colonne
+		for (int i = 0; i <= n; i++)
+			System.out.printf("____");
+		System.out.println();
+		// affiche tableau
+		for (int a = 1; a <= n; a++) {
+			// entête de ligne
+			System.out.printf("%3d|", a);
+			for (int b = 1; b <= n; b++) {
+				System.out.printf("%4d", fct.apply(a, b));
+			}
+			System.out.println();
+		}
 	}
 
 	/*--  
@@ -42,7 +94,7 @@ public class MyMath {
 	/**
 	 * Nombre de passages avant d'obtenir 1
 	 * 
-	 * @param n >0
+	 * @param n
 	 * @return
 	 */
 	public static int nbPassages(int n) {
@@ -83,8 +135,9 @@ public class MyMath {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(estPair(4));
-		System.out.println(estPair(9));
+		tableau(5, (x, y) -> x * y);
+		tableau(5, (x, y) -> x - y);
+		tableau(5, (x, y) -> x % y);
 	}
 
 }

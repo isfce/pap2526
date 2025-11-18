@@ -18,6 +18,15 @@ public class TestMyMath {
 		assertFalse(MyMath.estPair(9));
 		assertThrows(AssertionError.class, () -> MyMath.estPair(-9));
 	}
+	
+	@Test
+	void testFact() {
+		assertEquals(1, MyMath.fact(0));
+		assertEquals(1, MyMath.fact(1));
+		assertEquals(120, MyMath.fact(5));
+		assertThrows(AssertionError.class, () -> MyMath.fact(-1));
+		assertThrows(AssertionError.class, () -> MyMath.fact(21));
+	}
 
 	@Test
 	void testNbZero() {
