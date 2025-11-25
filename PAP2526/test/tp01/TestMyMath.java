@@ -18,7 +18,7 @@ public class TestMyMath {
 		assertFalse(MyMath.estPair(9));
 		assertThrows(AssertionError.class, () -> MyMath.estPair(-9));
 	}
-	
+
 	@Test
 	void testFact() {
 		assertEquals(1, MyMath.fact(0));
@@ -54,4 +54,35 @@ public class TestMyMath {
 
 	}
 
+	@Test
+	void testFibo() {
+		assertEquals(0, MyMath.fibo(0));
+		assertEquals(1, MyMath.fibo(1));
+		assertEquals(8, MyMath.fibo(6));
+		assertThrows(AssertionError.class, () -> MyMath.fibo(-1));
+	}
+
+	@Test
+	void testnbrOr() {
+		assertEquals(1, MyMath.nombreOr(1));
+		assertEquals(2, MyMath.nombreOr(2));
+		assertEquals(1.666666, MyMath.nombreOr(4), 0.000001);
+		assertEquals(1.6, MyMath.nombreOr(5), 0.000001);
+		assertThrows(AssertionError.class, () -> MyMath.nombreOr(0));
+	}
+
+	@Test
+	void testPremier() {
+		assertTrue(MyMath.estPremier(2));
+		assertTrue(MyMath.estPremier(3));
+		assertTrue(MyMath.estPremier(5));
+		assertTrue(MyMath.estPremier(7));
+		assertTrue(MyMath.estPremier(31));
+		assertFalse(MyMath.estPremier(4));
+		assertFalse(MyMath.estPremier(9));
+		assertFalse(MyMath.estPremier(25));
+		assertFalse(MyMath.estPremier(33));
+
+		assertThrows(AssertionError.class, () -> MyMath.estPremier(1));
+	}
 }

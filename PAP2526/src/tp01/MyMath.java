@@ -134,10 +134,67 @@ public class MyMath {
 		return v;
 	}
 
+	/**
+	 * Calcule le nème nombre de Fibonacci
+	 * 
+	 * @param n >=0
+	 * @return
+	 */
+	public static int fibo(int n) {
+		assert n >= 0 : " n doit être >=0";
+		int f0 = 0;
+		int f1 = 1;
+		int fn = n;
+		for (int i = 2; i <= n; i++) {
+			fn = f1 + f0;
+			f0 = f1;
+			f1 = fn;
+		}
+		return fn;
+	}
+
+	/**
+	 * Calcule le nombre d'or par Fibonacci
+	 * 
+	 * @param nbr nombre d'itérations
+	 * @return
+	 */
+	public static double nombreOr(int nbr) {
+		assert nbr > 0 : " nbr doit être > 0";
+		int f0 = 1;
+		int f1 = 1;
+		int fn;
+		for (int i = 2; i <= nbr; i++) {
+			fn = f1 + f0;
+			f0 = f1;
+			f1 = fn;
+		}
+		return f1 / (double) f0;
+	}
+
+	/**
+	 * Vérifie si un nombre est premier
+	 * 
+	 * @param n >1
+	 * @return
+	 */
+	public static boolean estPremier(int n) {
+		assert n >=2 : "n doit être >= 2";
+		boolean premier = (n == 2) || (n % 2 != 0);
+		int d = 3;
+		while (premier && d * d <= n) {
+			premier = n % d != 0;
+			d = d + 2;
+		}
+		return premier;
+	}
+
 	public static void main(String[] args) {
 		tableau(5, (x, y) -> x * y);
 		tableau(5, (x, y) -> x - y);
 		tableau(5, (x, y) -> x % y);
+		double r = 1 / 6.0;
+		System.out.println(r);
 	}
 
 }
