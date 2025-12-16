@@ -58,4 +58,11 @@ public class TestMyBool {
 		assertEquals("0x80000000",MyBool.intToHexV2(Integer.MIN_VALUE));
 		assertEquals("0xffffffff",MyBool.intToHexV2(-1));
 	}
+	@Test
+	void testDecodeUtf8() {
+		assertEquals('a',MyBool.decodeUtf8(97));
+		assertEquals('é',MyBool.decodeUtf8(0xC3A9));
+		assertEquals('€',MyBool.decodeUtf8(0xE282AC));
+	}
+	
 }

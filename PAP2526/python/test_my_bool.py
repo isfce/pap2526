@@ -15,7 +15,10 @@ class TestMyBool(unittest.TestCase):
         self.assertEqual("0x9", my_bool.intToHex(9))
         self.assertEqual("0xffffffff", my_bool.intToHex(0xffffffff))
         self.assertEqual("0xf4a", my_bool.intToHex(3914))
-        
-             
+    
+    def test_decodeUtf8(self):
+        self.assertEqual(ord('a'),my_bool.decodeUtf8(97));
+        self.assertEqual(ord('é'),my_bool.decodeUtf8(0xc3a9))
+        self.assertEqual(ord('€'),my_bool.decodeUtf8(0xe282ac))
 if __name__ == "__main__":
     unittest.main()

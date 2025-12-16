@@ -131,10 +131,35 @@ public class MyBool {
 		return 3;
 	}
 
+	/**
+	 * Décodage d'un code UTF8 en unicode
+	 * 
+	 * @param n un code UTF8 valable
+	 * @return le code unicode associé
+	 */
+	public static int decodeUtf8(int n) {
+		int res = 0;
+		if ((n & 0x80) == 0)
+			res = n;
+		else if ((n & 0xff0000) == 0)
+			res = n & 0x3f | (n & 0x1f00) >> 2;
+		else
+			res = n & 0x3f | (n & 0x3f00) >> 2 | (n & 0xf0000) >> 4;
+		return res;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(nbBytesUtf8('a'));
 		System.out.println(nbBytesUtf8('é'));
 		System.out.println(nbBytesUtf8('€'));
-
+		System.out.println((char) decodeUtf8(0xE282AC));
 	}
 }
+
+
+
+
+
+
+
+
