@@ -120,6 +120,33 @@ public class MyVect {
 		}
 	}
 
+	/**
+	 * Calcule le nombre de bosses
+	 * 
+	 * @param v
+	 * @return nbr de bosses
+	 */
+	public static int calculNbBosses(int[] v) {
+		int cpt = 0;
+		boolean monte = false;
+		for (int i = 0; i < v.length - 1; i++)
+			if (v[i] < v[i + 1])
+				monte = true;
+			else if (v[i] > v[i + 1] && monte) {
+				cpt++;
+				monte = false;
+			}
+		return cpt;
+	}
+
+	public static int lettreEnPlace(char[] v1, char[] v2) {
+		int cpt = 0;
+		for (int i = 0; i < v1.length; i++)
+			if (Character.toUpperCase(v1[i]) == Character.toUpperCase(v2[i]))
+				cpt++;
+		return cpt;
+	}
+
 	public static void main(String[] args) {
 	}
 

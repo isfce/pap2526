@@ -72,4 +72,17 @@ public class TestMyVect {
 		assertArrayEquals(new int[] { -2, 5, 1 }, v1);
 
 	}
+
+	@Test
+	public void testNbBosses() {
+		int[] v0 = { 1 };
+		int[] v1 = { 1, 4 };
+		int[] v2 = { 1, 2, 1 };
+		int[] v3 = { 1, 2, 2, 3, 4, 1, -1, -1, 1, 2, 1, 4, 4 };
+		assertEquals(0, MyVect.calculNbBosses(v0));
+		assertEquals(0, MyVect.calculNbBosses(v1));
+		assertEquals(1, MyVect.calculNbBosses(v2));
+		assertEquals(2, MyVect.calculNbBosses(v3));
+	}
+
 }
