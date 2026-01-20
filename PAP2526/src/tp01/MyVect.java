@@ -1,5 +1,9 @@
 package tp01;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 public class MyVect {
 
 	public static void affiche(int[] v) {
@@ -147,7 +151,103 @@ public class MyVect {
 		return cpt;
 	}
 
+	/**
+	 * Indique si le vecteur ne contient pas de doublon
+	 * 
+	 * @param v
+	 * @return
+	 */
+	public static boolean sansDoublon(int[] v) {
+		boolean doublon = false;
+		int i = 0;
+		while (!doublon && i < v.length - 1) {
+			int j = i + 1;
+			while (!doublon && j < v.length) {
+				doublon = v[i] == v[j];
+				j++;
+			}
+			i++;
+		}
+		return !doublon;
+	}
+
+	/**
+	 * Indique si le vecteur contient aucun doublon
+	 * 
+	 * @param v   vecteur contenant des nombres entre 0 et max
+	 * @param max
+	 * @return true si pas de doublon
+	 */
+	public static boolean sansDoublon(int[] v, int max) {
+		assert v.length > 0 : "Le vecteur doit contenir au moins 1 élément";
+		if (v.length > max + 1)
+			return false;
+		boolean doublon = false;
+		boolean[] b = new boolean[max + 1];// cases à false
+		int j = v[0];
+		b[j] = true;
+		int i = 1;
+		while (!doublon && i < v.length) {
+			j = v[i];
+			if (b[j])
+				doublon = true;
+			else {
+				b[j] = true;
+				i++;
+			}
+		}
+		return !doublon;
+	}
+
+	public static boolean sansDoublonV3(int[] v) {
+		assert v.length > 0 : "Le vecteur doit contenir au moins 1 élément";
+		boolean doublon = false;
+		Set<Integer> ens = new HashSet<Integer>(v.length);
+		int j = v[0];
+		ens.add(j);
+		int i = 1;
+		while (!doublon && i < v.length) {
+			j = v[i];
+			if (ens.contains(j))
+				doublon = true;
+			else {
+				ens.add(j);
+				i++;
+			}
+		}
+		return !doublon;
+	}
+
+	/**
+	 * Indique la position d'insertion de elem dans le vecteur trié par ordre
+	 * croissant et sans doublon
+	 * 
+	 * @param v    vecteur d'entier de taille t
+	 * @param n    nombre d'éléments dans le vecteur avec n <= t
+	 * @param elem
+	 * @return position d'insertion
+	 */
+	/*
+	 * public int recherchePos(int[] v, int n, int elem) {
+	 * 
+	 * }
+	 */
 	public static void main(String[] args) {
+		// initialise un vecteur sans doublon
+		int[] v1 = new int[100000];
+		for (int i = 0; i < v1.length; i++)
+			v1[i] = i;
+
+		long t1 = System.nanoTime();
+		sansDoublon(v1);
+		long t2 = System.nanoTime();
+		sansDoublon(v1, 1000);
+		long t3 = System.nanoTime();
+		sansDoublonV3(v1);
+		long t4 = System.nanoTime();
+		System.out.printf("v1: %,15d%n", (t2 - t1));
+		System.out.printf("v2: %,15d%n", (t3 - t2));
+		System.out.printf("v3: %,15d%n", (t4 - t3));
 	}
 
 }

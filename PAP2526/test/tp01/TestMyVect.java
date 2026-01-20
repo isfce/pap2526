@@ -85,4 +85,26 @@ public class TestMyVect {
 		assertEquals(2, MyVect.calculNbBosses(v3));
 	}
 
+	@Test
+	public void testDoublon() {
+		assertTrue(MyVect.sansDoublon(new int[] { 1, 2, 3, 4 }));
+		assertFalse(MyVect.sansDoublon(new int[] { 1, 2, 3, 4, 4 }));
+		assertFalse(MyVect.sansDoublon(new int[] { 1, 1, 3, 4, 5 }));
+	}
+
+	@Test
+	public void testDoublonV2() {
+		assertTrue(MyVect.sansDoublon(new int[] { 1, 2, 3, 4 }, 5));
+		assertFalse(MyVect.sansDoublon(new int[] { 1, 2, 3, 4, 4 }, 4));
+		assertFalse(MyVect.sansDoublon(new int[] { 1, 1, 3, 4, 5 }, 5));
+		assertFalse(MyVect.sansDoublon(new int[] { 1, 2, 3, 4, 5, 0, 5 }, 5));
+	}
+
+	@Test
+	public void testDoublonV3() {
+		assertTrue(MyVect.sansDoublonV3(new int[] { 1, 2, 3, 4 }));
+		assertFalse(MyVect.sansDoublonV3(new int[] { 1, 2, 3, 4, 4 }));
+		assertFalse(MyVect.sansDoublonV3(new int[] { 1, 1, 3, 4, 5 }));
+		assertFalse(MyVect.sansDoublonV3(new int[] { 1, 2, 3, 4, 5, 0, 5 }));
+	}
 }
