@@ -1,6 +1,5 @@
 package tp01;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -216,6 +215,118 @@ public class MyVect {
 			}
 		}
 		return !doublon;
+	}
+
+	/**
+	 * Tri par insertion
+	 * 
+	 * @param v tri le vecteur v
+	 * @return retourne l'adresse du vecteur v
+	 */
+	public static int[] triInsertion(int[] v) {
+		int j, tmp;
+		long cpt = 0;
+		for (int i = 1; i < v.length; i++) {
+			cpt++;
+			j = i - 1;
+			tmp = v[i];
+			while (j >= 0 && v[j] > tmp) {
+				cpt++;
+				v[j + 1] = v[j];
+				j--;
+			}
+			if (j + 1 != i)
+				v[j + 1] = tmp;
+		}
+		System.out.println("INSERTION => nombre d'opérations:" + cpt);
+		return v;
+	}
+
+	/**
+	 * Tri à bulle
+	 * 
+	 * @param v tri le vecteur v
+	 * @return retourne l'adresse du vecteur v
+	 */
+	public static int[] triBulle0(int[] v) {
+		int tmp;
+		long cpt = 0;
+		for (int i = v.length - 1; i > 0; i--) {
+			cpt++;
+			for (int j = 0; j < i; j++) {
+				cpt++;
+				if (v[j] > v[j + 1]) {
+					cpt++;
+					tmp = v[j];
+					v[j] = v[j + 1];
+					v[j + 1] = tmp;
+				}
+			}
+		}
+		System.out.println("BULLE0 => nombre d'opérations: " + cpt);
+		return v;
+	}
+
+	/**
+	 * Tri à bulle
+	 * 
+	 * @param v tri le vecteur v
+	 * @return retourne l'adresse du vecteur v
+	 */
+	public static int[] triBulle(int[] v) {
+		int tmp, pos = -1;
+		long cpt = 0;
+		boolean swap;
+		int i = v.length - 1;
+		do {
+			swap = false;
+			cpt++;
+			for (int j = 0; j < i; j++) {
+				cpt++;
+				if (v[j] > v[j + 1]) {
+					swap = true;
+					pos = j;
+					cpt++;
+					tmp = v[j];
+					v[j] = v[j + 1];
+					v[j + 1] = tmp;
+				}
+			}
+			i = pos;
+		} while (swap);
+		System.out.println("BULLE1 => nombre d'opérations:" + cpt);
+		return v;
+	}
+
+	public static int[] triBulle3(int[] v) {
+		boolean echange = true;
+		int i = v.length - 1;
+		int posD = -1;
+		int posG = 0;
+		while (echange) {
+			echange = false;
+			for (int j = posG; j < i; j++)
+				if (v[j] > v[j + 1]) {
+					int tmp = v[j];
+					v[j] = v[j + 1];
+					v[j + 1] = tmp;
+					echange = true;
+					posD = j;
+				}
+			if (echange) {
+				i = posD;
+				int l = posG;
+				for (int k = i; k > l; k--)
+					if (v[k] < v[k - 1]) {
+						int tmp = v[k];
+						v[k] = v[k - 1];
+						v[k - 1] = tmp;
+						echange = true;
+						posG = k;
+					}
+			}
+		}
+		return v;
 	}
 
 	/**

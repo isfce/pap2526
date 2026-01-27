@@ -107,4 +107,40 @@ public class TestMyVect {
 		assertFalse(MyVect.sansDoublonV3(new int[] { 1, 1, 3, 4, 5 }));
 		assertFalse(MyVect.sansDoublonV3(new int[] { 1, 2, 3, 4, 5, 0, 5 }));
 	}
+
+	@Test
+	public void testTriInsertion() {
+		assertArrayEquals(new int[] { 1 }, MyVect.triInsertion(new int[] { 1 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triInsertion(new int[] { 1, 2 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triInsertion(new int[] { 2, 1 }));
+		assertArrayEquals(new int[] { 1, 2, 3, 4 }, MyVect.triInsertion(new int[] { 4, 3, 2, 1 }));
+	}
+
+	@Test
+	public void testTriBulle0() {
+		assertArrayEquals(new int[] { 1 }, MyVect.triBulle0(new int[] { 1 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triBulle0(new int[] { 1, 2 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triBulle0(new int[] { 2, 1 }));
+		assertArrayEquals(new int[] { 1, 2, 3, 4 }, MyVect.triBulle0(new int[] { 4, 3, 2, 1 }));
+		assertArrayEquals(new int[] { 1, 4, 5, 6, 9 }, MyVect.triBulle0(new int[] { 9, 4, 5, 6, 1 }));
+
+	}
+	@Test
+	public void testTriBulle1() {
+		assertArrayEquals(new int[] { 1 }, MyVect.triBulle(new int[] { 1 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triBulle(new int[] { 1, 2 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triBulle(new int[] { 2, 1 }));
+		assertArrayEquals(new int[] { 1, 2, 3, 4 }, MyVect.triBulle(new int[] { 4, 3, 2, 1 }));
+		assertArrayEquals(new int[] { 1, 4, 5, 6, 9 }, MyVect.triBulle(new int[] { 9, 4, 5, 6, 1 }));
+
+	}
+	@Test
+	public void testTriBulle3() {
+		assertArrayEquals(new int[] { 1 }, MyVect.triBulle3(new int[] { 1 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triBulle3(new int[] { 1, 2 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.triBulle3(new int[] { 2, 1 }));
+		assertArrayEquals(new int[] { 1, 2, 3, 4 }, MyVect.triBulle3(new int[] { 4, 3, 2, 1 }));
+		assertArrayEquals(new int[] { 1, 4, 5, 6, 9 }, MyVect.triBulle3(new int[] { 9, 4, 5, 6, 1 }));
+
+	}
 }
