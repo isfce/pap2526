@@ -330,6 +330,61 @@ public class MyVect {
 	}
 
 	/**
+	 * Fusion de 2 vecteurs triés
+	 * 
+	 * @param l1 vecteur trié par ordre croissant
+	 * @param l2 vecteur trié par ordre croissant
+	 * @return retourne un vecteur trié contenant l1 et l2
+	 */
+	public static int[] fusionVectSoir(int[] l1, int[] l2) {
+		int[] l3 = new int[l1.length + l2.length];
+		int i = 0, j = 0, k = 0;
+		while (k < l3.length) {
+			while (i < l1.length && (j == l2.length || l1[i] <= l2[j])) {
+				l3[k] = l1[i];
+				i++;
+				k++;
+			}
+			while (j < l2.length && (i == l1.length || l2[j] <= l1[i])) {
+				l3[k] = l2[j];
+				j++;
+				k++;
+			}
+		}
+		return l3;
+	}
+
+	/**
+	 * Fusion de 2 vecteurs triés
+	 * 
+	 * @param l1 vecteur trié par ordre croissant
+	 * @param l2 vecteur trié par ordre croissant
+	 * @return retourne un vecteur trié contenant l1 et l2
+	 */
+	public static int[] fusionVect(int[] l1, int[] l2) {
+		int[] l3 = new int[l1.length + l2.length];
+		int i = 0, j = 0, k = 0, maxl1, maxl2;
+		while (k < l3.length) {
+			maxl2 = j < l2.length ? l2[j] : Integer.MAX_VALUE;
+			while (i < l1.length && l1[i] <= maxl2) {
+				l3[k] = l1[i];
+				k++;
+				i++;
+			}
+
+			maxl1 = i < l1.length ? l1[i] : Integer.MAX_VALUE;
+			while (j < l2.length && l2[j] <= maxl1) {
+				l3[k] = l2[j];
+				k++;
+				j++;
+			}
+		}
+
+		return l3;
+
+	}
+
+	/**
 	 * Indique la position d'insertion de elem dans le vecteur trié par ordre
 	 * croissant et sans doublon
 	 * 

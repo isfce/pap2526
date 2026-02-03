@@ -143,4 +143,25 @@ public class TestMyVect {
 		assertArrayEquals(new int[] { 1, 4, 5, 6, 9 }, MyVect.triBulle3(new int[] { 9, 4, 5, 6, 1 }));
 
 	}
+	
+	@Test
+	public void testFusionVect() {
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVect(new int[] { 1,2 },new int[] {3,4}));
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVect(new int[] { 3,4 },new int[] {1,2}));
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVect(new int[] { 1,2,4},new int[] {3}));
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVect(new int[] { 3},new int[] {1,2,4}));
+		assertArrayEquals(new int[] { 2,3,4,6,7,7,8,8,9,10,15}, MyVect.fusionVect(new int[] { 4,7,8,8},new int[] {2,3,6,7,9,10,15}));
+		
+
+	}
+	@Test
+	public void testFusionVectSoir() {
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVectSoir(new int[] { 1,2 },new int[] {3,4}));
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVectSoir(new int[] { 3,4 },new int[] {1,2}));
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVectSoir(new int[] { 1,2,4},new int[] {3}));
+		assertArrayEquals(new int[] { 1,2,3,4 }, MyVect.fusionVectSoir(new int[] { 3},new int[] {1,2,4}));
+		assertArrayEquals(new int[] { 2,3,4,6,7,7,8,8,9,10,15}, MyVect.fusionVectSoir(new int[] { 4,7,8,8},new int[] {2,3,6,7,9,10,15}));
+		
+
+	}
 }
