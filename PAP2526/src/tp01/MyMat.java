@@ -2,9 +2,7 @@ package tp01;
 
 public class MyMat {
 	/**
-	 * @param mat
-	 * Affichage d'une matrice plus esthétique
-	 * matrice n*m
+	 * @param mat Affichage d'une matrice plus esthétique matrice n*m
 	 */
 	public static void afficheMat(int[][] mat) {
 		// Définir les caractères pour les bordures
@@ -52,9 +50,11 @@ public class MyMat {
 			System.out.println();
 		}
 	}
+
 	/**
-	 * Pour l'affichage afficheMat
-	 * Retourne le nombre maximum de caractères des nombres de la matrice
+	 * Pour l'affichage afficheMat Retourne le nombre maximum de caractères des
+	 * nombres de la matrice
+	 * 
 	 * @param mat
 	 * @return
 	 */
@@ -67,8 +67,9 @@ public class MyMat {
 	}
 
 	/**
-	 * Pour l'affichage afficheMat
-	 * nbr maimum de caractères pour la 1ère colonne de la matrice
+	 * Pour l'affichage afficheMat nbr maimum de caractères pour la 1ère colonne de
+	 * la matrice
+	 * 
 	 * @param mat
 	 * @return
 	 */
@@ -79,10 +80,91 @@ public class MyMat {
 		return maxi;
 	}
 
-	
+	/**
+	 * Recherche le plus petit élément dans le vecteur
+	 * 
+	 * @param m matrice d'entier
+	 * @return plus petit élément
+	 */
+	public static int rechercheMin(int[][] m) {
+		int mini = m[0][0];
+		for (int[] v : m)
+			for (int e : v)
+				if (e < mini)
+					mini = e;
+		return mini;
+	}
+
+	/**
+	 * Retourne true si e existe dans la matrice
+	 * 
+	 * @param m matrice non nulle
+	 * @param e l'entier à rechercher
+	 * @return
+	 */
+	public static boolean existeInMat(int[][] m, int e) {
+		boolean trouve = false;
+		int j, i = 0;
+		while (!trouve && i < m.length) {
+			j = 0;
+			while (!trouve && j < m[i].length) {
+				/*
+				 * trouve = m[i][j] == e; j++;
+				 */
+				if (m[i][j] == e)
+					trouve = true;
+				else
+					j++;
+			}
+			i++;
+		}
+		return trouve;
+	}
+
+	/**
+	 * Vérifie si une matrice carrée est symétrique
+	 * 
+	 * @param m matrice carrée
+	 * @return true si symétrique
+	 */
+	public static boolean estSymetrique(int[][] m) {
+		boolean sym = true;
+		int j, i = 1;
+		while (sym && i < m.length) {
+			j = 0;
+			while (sym && j < i) {
+				if (m[i][j] != m[j][i])
+					sym = false;
+				else
+					j++;
+				/*
+				 * sym = m[i][j] == m[j][i]; j++;
+				 */
+			}
+			i++;
+		}
+		return sym;
+	}
+
+	/**
+	 * Valide une séquence de chiffres
+	 * 
+	 * @param v la séquence de chiffres
+	 * @param m une matrice 10 sur 10 de booléens (transition de i->j)
+	 * @return true si valide
+	 */
+	public static boolean validerSeq(int[] v, boolean[][] m) {
+		boolean valide = true;
+		int i = 0;
+		while (valide && i < v.length - 1) {
+			valide = m[v[i]][v[i + 1]];
+			i++;
+		}
+		return valide;
+	}
 
 	public static void main(String[] args) {
-		int[][]m1= {{5,3,2},{1,7,2}};
+		int[][] m1 = { { 5, 3, 2 }, { 1, 7, 2 } };
 		afficheMat(m1);
 	}
 
