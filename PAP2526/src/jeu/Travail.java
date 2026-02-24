@@ -1,7 +1,7 @@
 package jeu;
 
 public class Travail {
-	
+
 	// directions possibles
 	public enum Direction {
 		HORIZONTAL, VERTIVAL, DIAGONALE1, DIAGONALE2
@@ -12,25 +12,25 @@ public class Travail {
 	};
 
 	/**
-	 *  recherche le mot au sein de la matrice.
-	 *  Hypothèse, le mot existe dans la matrice et peut être dans une des 4 directions
+	 * recherche le mot au sein de la matrice. Hypothèse, le mot existe dans la
+	 * matrice et peut être dans une des 4 directions
 	 * 
 	 * @param grille la matrice avec les lettres
 	 * @param mot    un String
 	 * @return la position du mot et sa direction
 	 */
 	public static PosMot chercheMot(char[][] grille, String mot) {
+		char[] v = mot.toCharArray();//pour transformer le String en un vecteur de caractères
 		// TODO
-		
-		
-		return new PosMot(1, 2, Direction.HORIZONTAL);//à ajuster
+		return new PosMot(1, 2, Direction.HORIZONTAL);// à ajuster
 
 	}
+	
+	
 
 	public static void main(String[] args) {
 		String[] mots1 = { "BALLON", "COURSE", "ENTRAINEUR", "GYMNASTIQUE" };
-		char[][] grille1 = 
-			  { { 'E', 'N', 'T', 'R', 'A', 'I', 'N', 'E', 'U', 'R', 'U' },
+		char[][] grille1 = { { 'E', 'N', 'T', 'R', 'A', 'I', 'N', 'E', 'U', 'R', 'U' },
 				{ 'Q', 'A', 'E', 'P', 'B', 'S', 'Q', 'W', 'O', 'V', 'T' },
 				{ 'V', 'T', 'D', 'L', 'C', 'U', 'D', 'Z', 'Y', 'G', 'X' },
 				{ 'N', 'Q', 'O', 'X', 'U', 'G', 'X', 'B', 'F', 'O', 'T' },
@@ -46,8 +46,7 @@ public class Travail {
 			System.out.println(chercheMot(grille1, s));
 
 		String[] mots2 = { "CYCLISME", "BALLON", "TENNIS", "ATHLETISME" };
-		char[][] grille2 = 
-			  { { 'B', 'C', 'T', 'N', 'L', 'P', 'I', 'B', 'J', 'A', 'J' },
+		char[][] grille2 = { { 'B', 'C', 'T', 'N', 'L', 'P', 'I', 'B', 'J', 'A', 'J' },
 				{ 'J', 'Y', 'E', 'E', 'E', 'L', 'B', 'Z', 'R', 'T', 'X' },
 				{ 'Z', 'C', 'V', 'Q', 'N', 'T', 'X', 'Z', 'H', 'H', 'B' },
 				{ 'N', 'L', 'K', 'P', 'F', 'N', 'W', 'C', 'Q', 'L', 'A' },
@@ -59,8 +58,8 @@ public class Travail {
 				{ 'L', 'O', 'N', 'K', 'K', 'F', 'X', 'V', 'I', 'E', 'U' },
 				{ 'X', 'L', 'I', 'T', 'W', 'E', 'M', 'C', 'B', 'P', 'W' } };
 		// TEST
-				for (String s : mots2)
-					System.out.println(chercheMot(grille2, s));
+		for (String s : mots2)
+			System.out.println(chercheMot(grille2, s));
 
 	}
 
