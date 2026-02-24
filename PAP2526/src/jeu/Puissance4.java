@@ -1,6 +1,7 @@
 package jeu;
 
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -36,7 +37,8 @@ public class Puissance4 {
 	private Scanner scan;
 
 	/**
-	 * Création d'une nouvelle partie	
+	 * Création d'une nouvelle partie
+	 * 
 	 * @param string
 	 * @param string2
 	 */
@@ -113,8 +115,9 @@ public class Puissance4 {
 	}
 
 	/**
-	 * Pour l'affichage du jeu
-	 * Retourne le nombre maximum de caractères des nombres de la matrice
+	 * Pour l'affichage du jeu Retourne le nombre maximum de caractères des nombres
+	 * de la matrice
+	 * 
 	 * @param mat
 	 * @return
 	 */
@@ -127,8 +130,9 @@ public class Puissance4 {
 	}
 
 	/**
-	 * Pour l'affichage du jeu
-	 * nbr maimum de caractères pour la 1ère colonne de la matrice
+	 * Pour l'affichage du jeu nbr maimum de caractères pour la 1ère colonne de la
+	 * matrice
+	 * 
 	 * @param mat
 	 * @return
 	 */
@@ -140,8 +144,8 @@ public class Puissance4 {
 	}
 
 	/**
-	 * Crée une bordure avec des -1 et des 0 ailleurs
-	 *  temporairement avec une visibilité "public"
+	 * Crée une bordure avec des -1 et des 0 ailleurs temporairement avec une
+	 * visibilité "public"
 	 */
 	private void initJeu() {
 		for (int i = 0; i < 8; i++)
@@ -153,10 +157,11 @@ public class Puissance4 {
 	}
 
 	/**
-	 * Doit insérer le pion dans le jeu et
-	 * mettre à jour la position du pion inséré (lignePion,colonnePion)
-	 * @param couleur  1 jaune et 2 rouge
-	 * @param colonne  1..7
+	 * Doit insérer le pion dans le jeu et mettre à jour la position du pion inséré
+	 * (lignePion,colonnePion)
+	 * 
+	 * @param couleur 1 jaune et 2 rouge
+	 * @param colonne 1..7
 	 * @return true si le coup est valable
 	 */
 	public boolean insertPion(int couleur, int colonne) {
@@ -206,17 +211,40 @@ public class Puissance4 {
 	}
 
 	/**
-	 * Retourne true si au moins 4 pions à la suite pour
-	 * le joueur actuel (tour)
+	 * Retourne true si au moins 4 pions à la suite pour le joueur actuel (tour)
+	 * 
 	 * @return true si gagné
 	 */
 	private boolean quatreALaSuite() {
+		// (this.lignePion ,this.colonnePion)==> position du pion du joueur;
+		// pionJoueur() donne le code du pion (1 ou 2)
 		// TODO Auto-generated method stub
-		return false;
+		int coul = pionJoueur();
+		boolean gagne = (nbPionsDirection(coul, 0, -1) + nbPionsDirection(coul, 0, 1)) >= 3;
+		if (!gagne)
+			gagne = nbPionsDirection(coul, 1, 0) >= 3;
+
+		return gagne;
+	}
+
+	/**
+	 * Retourne le nombres de pions de la couleur dans la direction dirx, diry
+	 * à partir de la position du dernier pion (this.lignePion ,this.colonnePion)
+	 * @param couleur 1 ou 2
+	 * @param dirx -1 0 1
+	 * @param diry -1 0 1
+	 * @return nb pions
+	 */
+	private int nbPionsDirection(int couleur, int dirx, int diry) {
+		int nb = 0;
+		// TODO
+
+		return nb;
 	}
 
 	/**
 	 * Retourne le code du pion du joueur dont c'est le tour
+	 * 
 	 * @return
 	 */
 	private int pionJoueur() {
@@ -225,6 +253,7 @@ public class Puissance4 {
 
 	/**
 	 * Retourne le nom du joueur dont c'est le tour
+	 * 
 	 * @return
 	 */
 	private String nomJoueur() {
@@ -233,6 +262,7 @@ public class Puissance4 {
 
 	/**
 	 * Retourne un choix de colonne entre 1 et 7
+	 * 
 	 * @return 1..7
 	 */
 	private int choisirColonne() {
