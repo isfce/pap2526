@@ -1,11 +1,11 @@
 package util;
 
-public interface IStack {
-	public void push(int elem);
+public interface IStack<T> {
+	public void push(T elem);
 	
-	public int pop();
+	public T pop();
 
-	public int top();
+	public T top();
 
 	public boolean empty();
 

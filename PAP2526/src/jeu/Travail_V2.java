@@ -1,10 +1,18 @@
 package jeu;
 
-public class Travail {
+public class Travail_V2 {
 
 	// directions possibles
 	public enum Direction {
-		HORIZONTAL, VERTIVAL, DIAGONALE1, DIAGONALE2
+		HORIZONTAL(0, 1), HORIZONTAL_INV(0, -1), VERTICAL(1, 0),VERTICAL_INV(-1, 0), DIAGONALE1(1, 1), DIAGONALE2(-1, 1);
+
+		final int dirX;
+		final int dirY;
+
+		Direction(int dirX, int dirY) {
+			this.dirX = dirX;
+			this.dirY = dirY;
+		}
 	};
 
 	// indique la position de la première lettre du mot et sa direction
@@ -20,42 +28,37 @@ public class Travail {
 	 * @return la position du mot et sa direction
 	 */
 	public static PosMot chercheMot(char[][] grille, String mot) {
-		char[] v = mot.toCharArray();// pour transformer le String en un vecteur de caractères
+		final char[] v = mot.toCharArray();// pour transformer le String en un vecteur de caractères
 		PosMot resultat = null;
-		char lettre = v[0];
+		final char lettre = v[0];
 		boolean trouve = false;
+		// pour bcl while
+		final Direction[] directions = Direction.values();
+
 		int i = 0;
-		int maxI = grille.length - v.length;
-		int maxJ = grille[0].length - v.length;
+		final int maxI = grille.length - v.length;
+		final int maxJ = grille[0].length - v.length;
+		final int minI = v.length - 1;
 		while (!trouve && i < grille.length) {
 			int j = 0;
 			while (!trouve && j < grille[0].length) {
 				if (grille[i][j] == lettre) {// 1er Lettre OK
-					// horizontal
-					if (j <= maxJ)
-						trouve = rechercheDir(grille, v, i, j, 0, 1);
-					if (trouve)
-						resultat = new PosMot(i, j, Direction.HORIZONTAL);
-					else {
-						// diag1
-						if (j <= maxJ && i <= maxI)
-							trouve = rechercheDir(grille, v, i, j, 1, 1);
-						if (trouve)
-							resultat = new PosMot(i, j, Direction.DIAGONALE1);
-						else {
-							// Vert
-							if (i <= maxI)
-								trouve = rechercheDir(grille, v, i, j, 1, 0);
-							if (trouve)
-								resultat = new PosMot(i, j, Direction.VERTIVAL);
-							else {
-								// DIAG2
-								if (j <= maxJ && i >= v.length - 1)
-									trouve = rechercheDir(grille, v, i, j, -1, 1);
-								if (trouve)
-									resultat = new PosMot(i, j, Direction.DIAGONALE2);
+					int d = 0;
+					while (!trouve && d < directions.length) {
+						Direction direction = directions[d];
+						if (switch (direction) {
+						case HORIZONTAL -> j <= maxJ;
+						case HORIZONTAL_INV -> j >= minI;
+						case DIAGONALE1 -> j <= maxJ && i <= maxI;
+						case VERTICAL -> i <= maxI;
+						case VERTICAL_INV -> i >= minI;
+						case DIAGONALE2 -> j <= maxJ && i >= minI;
+						})
+							if (rechercheDir(grille, v, i, j, direction.dirX, direction.dirY)) {
+								trouve = true;
+								resultat = new PosMot(i, j, direction);
 							}
-						}
+						d++;
 					}
 				}
 				j++;
@@ -91,8 +94,7 @@ public class Travail {
 
 	public static void main(String[] args) {
 		String[] mots1 = { "BALLON", "COURSE", "ENTRAINEUR", "GYMNASTIQUE" };
-		char[][] grille1 = { 
-				{ 'E', 'N', 'T', 'R', 'A', 'I', 'N', 'E', 'U', 'R', 'U' },
+		char[][] grille1 = { { 'E', 'N', 'T', 'R', 'A', 'I', 'N', 'E', 'U', 'R', 'U' },
 				{ 'Q', 'A', 'E', 'P', 'B', 'S', 'Q', 'W', 'O', 'V', 'T' },
 				{ 'V', 'T', 'D', 'L', 'C', 'U', 'D', 'Z', 'Y', 'G', 'X' },
 				{ 'N', 'Q', 'O', 'X', 'U', 'G', 'X', 'B', 'F', 'O', 'T' },
@@ -105,9 +107,9 @@ public class Travail {
 				{ 'D', 'E', 'H', 'Q', 'X', 'X', 'C', 'C', 'K', 'K', 'J' } };
 		// TEST
 		for (String s : mots1)
-			System.out.println(s+"   "+chercheMot(grille1, s));
+			System.out.println(s + "   " + chercheMot(grille1, s));
 
-		String[] mots2 = { "CYCLISME", "BALLON", "TENNIS", "ATHLETISME","PONXI","BEB" };
+		String[] mots2 = { "CYCLISME", "BALLON", "TENNIS", "ATHLETISME", "PONXI", "BEB", "ALMO","KVET" };
 		char[][] grille2 = { 
 				{ 'B', 'C', 'T', 'N', 'L', 'P', 'I', 'B', 'J', 'A', 'J' },
 				{ 'J', 'Y', 'E', 'E', 'E', 'L', 'B', 'Z', 'R', 'T', 'X' },
@@ -122,7 +124,7 @@ public class Travail {
 				{ 'X', 'L', 'I', 'T', 'W', 'E', 'M', 'I', 'B', 'P', 'W' } };
 		// TEST
 		for (String s : mots2)
-			System.out.println(s+"   "+chercheMot(grille2, s));
+			System.out.println(s + "   " + chercheMot(grille2, s));
 
 	}
 

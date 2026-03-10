@@ -1,29 +1,42 @@
 package util;
 
-public class StackArray implements IStack {
-	private int[] v;
+public class StackArray<T> implements IStack<T> {
+	private T[] v;
 	private int sommet;
+	private int increment = 10;
 
+	@SuppressWarnings("unchecked")
 	public StackArray(int taille) {
-		v = new int[taille];
+		v = (T[]) new Object[taille];
 		sommet = 0;
 	}
 
 	@Override
-	public void push(int elem) {
+	public void push(T elem) {
+		if (sommet == v.length)
+			agrandirVect();
 		v[sommet] = elem;
 		sommet++;
 	}
 
-	@Override
-	public int pop() {
-		sommet--;
-		return v[sommet];
+	@SuppressWarnings("unchecked")
+	private void agrandirVect() {
+		T[] v2 = (T[]) new Object[v.length + increment];
+		System.arraycopy(v, 0, v2, 0, v.length);
+		v = v2;
+		// System.out.println("Grow to "+v.length);
 	}
 
 	@Override
-	public int top() {
+	public T pop() {
+		sommet--;
+		T tmp = v[sommet];
+		v[sommet] = null;
+		return tmp;
+	}
 
+	@Override
+	public T top() {
 		return v[sommet - 1];
 	}
 

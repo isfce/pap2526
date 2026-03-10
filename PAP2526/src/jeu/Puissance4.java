@@ -1,7 +1,6 @@
 package jeu;
 
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -220,25 +219,42 @@ public class Puissance4 {
 		// pionJoueur() donne le code du pion (1 ou 2)
 		// TODO Auto-generated method stub
 		int coul = pionJoueur();
-		boolean gagne = (nbPionsDirection(coul, 0, -1) + nbPionsDirection(coul, 0, 1)) >= 3;
-		if (!gagne)
-			gagne = nbPionsDirection(coul, 1, 0) >= 3;
-
+		// Horizontal
+		gagne = (nbPionsDirection(coul, 0, 1) + nbPionsDirection(coul, 0, -1)) >= 3;
+		if (gagne)
+			return true;
+		// vertical
+		gagne = nbPionsDirection(coul, 1, 0) >= 3;
+		if (gagne)
+			return true;
+		//DIAG1
+		gagne = (nbPionsDirection(coul, 1, 1) + nbPionsDirection(coul, -1, -1)) >= 3;
+		if (gagne)
+			return true;
+		//DIAG2
+		gagne = (nbPionsDirection(coul, 1, -1) + nbPionsDirection(coul, -1, 1)) >= 3;
+		
 		return gagne;
 	}
 
 	/**
-	 * Retourne le nombres de pions de la couleur dans la direction dirx, diry
-	 * à partir de la position du dernier pion (this.lignePion ,this.colonnePion)
+	 * Retourne le nombres de pions de la couleur dans la direction dirx, diry à
+	 * partir de la position du dernier pion (this.lignePion ,this.colonnePion)
+	 * 
 	 * @param couleur 1 ou 2
-	 * @param dirx -1 0 1
-	 * @param diry -1 0 1
+	 * @param dirx    -1 0 1
+	 * @param diry    -1 0 1
 	 * @return nb pions
 	 */
-	private int nbPionsDirection(int couleur, int dirx, int diry) {
+	private int nbPionsDirection(int couleur, int dirX, int dirY) {
 		int nb = 0;
-		// TODO
-
+		int x = this.lignePion + dirX;
+		int y = this.colonnePion + dirY;
+		while (jeu[x][y] == couleur) {
+			nb++;
+			x = x + dirX;
+			y = y + dirY;
+		}
 		return nb;
 	}
 
@@ -289,7 +305,6 @@ public class Puissance4 {
 		Puissance4 partie = new Puissance4("Waf", "Vo");
 		partie.start();
 		// partie.afficheListeDesCoups();
-
 		// partie.start();
 
 	}
