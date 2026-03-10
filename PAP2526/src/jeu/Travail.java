@@ -4,7 +4,7 @@ public class Travail {
 
 	// directions possibles
 	public enum Direction {
-		HORIZONTAL, VERTIVAL, DIAGONALE1, DIAGONALE2
+		HORIZONTAL, VERTICAL, DIAGONALE1, DIAGONALE2
 	};
 
 	// indique la position de la première lettre du mot et sa direction
@@ -47,7 +47,7 @@ public class Travail {
 							if (i <= maxI)
 								trouve = rechercheDir(grille, v, i, j, 1, 0);
 							if (trouve)
-								resultat = new PosMot(i, j, Direction.VERTIVAL);
+								resultat = new PosMot(i, j, Direction.VERTICAL);
 							else {
 								// DIAG2
 								if (j <= maxJ && i >= v.length - 1)
