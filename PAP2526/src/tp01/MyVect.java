@@ -3,6 +3,10 @@ package tp01;
 import java.util.HashSet;
 import java.util.Set;
 
+import tp02.Recursivite;
+import util.IStack;
+import util.StackArray;
+
 public class MyVect {
 
 	public static void affiche(int[] v) {
@@ -324,6 +328,31 @@ public class MyVect {
 						echange = true;
 						posG = k;
 					}
+			}
+		}
+		return v;
+	}
+
+	/**
+	 * Quicksort classique
+	 * 
+	 * @param v
+	 */
+	public static int[] quicksort(int[] v) {
+		IStack<Integer> s = new StackArray<Integer>(v.length);
+		s.push(0);
+		s.push(v.length - 1);
+		while (!s.empty()) {
+			int f = s.pop();
+			int d = s.pop();
+			int p = Recursivite.posPivot(v, d, f);
+			if (p - d > 1) {
+				s.push(d);
+				s.push(p - 1);
+			}
+			if (f - p > 1) {
+				s.push(p + 1);
+				s.push(f);
 			}
 		}
 		return v;

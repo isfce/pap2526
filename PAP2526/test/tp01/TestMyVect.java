@@ -143,6 +143,15 @@ public class TestMyVect {
 		assertArrayEquals(new int[] { 1, 4, 5, 6, 9 }, MyVect.triBulle3(new int[] { 9, 4, 5, 6, 1 }));
 
 	}
+	@Test
+	public void testTriQuick() {
+		assertArrayEquals(new int[] { 1 }, MyVect.quicksort(new int[] { 1 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.quicksort(new int[] { 1, 2 }));
+		assertArrayEquals(new int[] { 1, 2 }, MyVect.quicksort(new int[] { 2, 1 }));
+		assertArrayEquals(new int[] { 1, 2, 3, 4 }, MyVect.quicksort(new int[] { 4, 3, 2, 1 }));
+		assertArrayEquals(new int[] { 1, 4, 5, 6, 9 }, MyVect.quicksort(new int[] { 9, 4, 5, 6, 1 }));
+
+	}
 	
 	@Test
 	public void testFusionVect() {

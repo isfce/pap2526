@@ -4,6 +4,7 @@ public class StackArray<T> implements IStack<T> {
 	private T[] v;
 	private int sommet;
 	private int increment = 10;
+	private int maxi=0;
 
 	@SuppressWarnings("unchecked")
 	public StackArray(int taille) {
@@ -17,6 +18,7 @@ public class StackArray<T> implements IStack<T> {
 			agrandirVect();
 		v[sommet] = elem;
 		sommet++;
+		maxi=Math.max(maxi, sommet);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -44,5 +46,10 @@ public class StackArray<T> implements IStack<T> {
 	public boolean empty() {
 		return sommet == 0;
 	}
+
+	public int getMaxi() {
+		return maxi;
+	}
+	
 
 }
